@@ -15,13 +15,15 @@ map "/" do
 }
 end
 
-run Proc.new { |env|
+map "/ayuda.html" do
+  run lambda { |env|
   [
     200, 
     {
       'Content-Type'  => 'text/html', 
-      'Cache-Control' => 'public, max-age=6400' 
+      'Cache-Control' => 'public, max-age=86400' 
     },
-    File.open( 'public' + env['PATH_INFO'], File::RDONLY)
+    File.open('public/ayuda.html', File::RDONLY)
   ]
 }
+end
